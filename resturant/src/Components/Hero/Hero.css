@@ -1,0 +1,11 @@
+.container {
+  position: relative;
+  width: 100%;
+}
+.container img {
+  width: 100%;
+  z-index: 1000;
+}
+h1 {
+  padding: 10px;
+}
