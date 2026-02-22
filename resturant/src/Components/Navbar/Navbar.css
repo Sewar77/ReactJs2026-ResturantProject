@@ -7,6 +7,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
   padding: 18px 60px;
   position: sticky;
   top: 0;
@@ -26,6 +27,7 @@
 .nav-links {
   list-style: none;
   display: flex;
+  flex-wrap: wrap;
   gap: 35px;
 }
 
