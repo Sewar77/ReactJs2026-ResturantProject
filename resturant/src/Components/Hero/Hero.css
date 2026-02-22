@@ -1,11 +1,22 @@
 .container {
   position: relative;
-  width: 100%;
 }
+
 .container img {
   width: 100%;
-  z-index: 1000;
+  display: block;
 }
-h1 {
-  padding: 10px;
+
+/* text on image */
+.title {
+  position: absolute;
+  top: 50%;
+  left: 20%;
+  transform: translate(-50%, -50%);
+  overflow: hidden;
+  color: white;
+  font-size: 6rem;
+  font-weight: bold;
+
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
 }

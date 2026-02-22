@@ -10,10 +10,12 @@ function Hero() {
       setCounter(0);
     }
   };
-
+  //task solution
   const handleMinus = () => {
-    //when user click, the value -1
-    //when zero, stop
+    setCounter((counter) => counter - 1);
+    if (counter === 0) {
+      setCounter(0);
+    }
   };
 
   return (
@@ -21,13 +23,13 @@ function Hero() {
       {/* html */}
       <div className="container">
         <img src="./src/assets/hero.jpg" alt="Hero" />
-        <h1>PICANTE</h1>
+        <h1 className="title">PICANTE</h1>
       </div>
-      <div>
+      {/* <div>
         <p>Counter: {counter}</p>
         <button onClick={handleClick}>+</button>
         <button onClick={handleMinus}>-</button>
-      </div>
+      </div> */}
     </>
   );
 }
