@@ -6,8 +6,14 @@ import {
   CardActions,
   CardMedia,
 } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+
 //child component its always child,
-function MenuCard({ name, descriptioon, image }) {
+function MenuCard({ name, descriptioon, image, price, quantity }) {
+  const navigate = useNavigate();
+  const handleView = () => {
+    navigate("/view-details", { state: { name, descriptioon, image, price, quantity } });
+  };
   return (
     <>
       <Card sx={{ maxWidth: 345 }}>
@@ -18,7 +24,9 @@ function MenuCard({ name, descriptioon, image }) {
         </CardContent>
         <CardActions>
           <Button size="small">Add To Cart</Button>
-          <Button size="small">View</Button>
+          <Button size="small" onClick={handleView}>
+            View
+          </Button>
         </CardActions>
       </Card>
     </>
