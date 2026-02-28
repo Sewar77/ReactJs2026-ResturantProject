@@ -10,10 +10,18 @@ import {
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { CartContext } from "../../Context/CartContext.jsx";
+import { useContext } from "react";
 //child component its always child,
-function MenuCard({ name, descriptioon, image, price, quantity }) {
+
+function MenuCard({ id, name, descriptioon, image, price, quantity }) {
+  const item = { id, name, descriptioon, image, price, quantity };
+  console.log(item);
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
+  
+  const { cart, addToCart } = useContext(CartContext);
+
   const handleView = () => {
     navigate("/view-details", {
       state: { name, descriptioon, image, price, quantity },
@@ -23,6 +31,9 @@ function MenuCard({ name, descriptioon, image, price, quantity }) {
     setOpen(true);
   };
   const handleClose = () => setOpen(false);
+
+  const cartItem = cart.find((item) => item.id === id);
+  const userQuantity = cartItem ? cartItem.quantity : 0;
   return (
     <>
       <Card sx={{ maxWidth: 345 }}>
@@ -64,10 +75,13 @@ function MenuCard({ name, descriptioon, image, price, quantity }) {
           <Typography variant="body1" align="center">
             descriptioon: {descriptioon}
           </Typography>
+          <Typography variant="body1" align="center">
+            amount in the store right noe: {quantity}
+          </Typography>
 
           <Typography variant="body1" align="center">
-            <Button>+</Button>
-            quantity: {quantity}
+            <Button onClick={() => addToCart(item)}>+</Button>
+            quantity user asked for: {userQuantity}
             <Button>-</Button>
           </Typography>
 
