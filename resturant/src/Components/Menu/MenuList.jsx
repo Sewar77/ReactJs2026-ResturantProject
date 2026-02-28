@@ -58,6 +58,7 @@ function MenuList() {
             return (
               <Grid item xs={12} sm={6} md={5} key={pizza.id}>
                 <MenuCard
+                  id={pizza.id}
                   name={pizza.name}
                   descriptioon={pizza.description}
                   image={pizza.image}
