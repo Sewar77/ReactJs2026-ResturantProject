@@ -1,10 +1,11 @@
 import { useState, createContext, useEffect } from "react";
 import toast from "react-hot-toast";
-
+import { useNavigate } from "react-router-dom";
 export const UserContext = createContext();
 //login, register, logout
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const navigate = useNavigate();
   //get current user from local storage when app load
   useEffect(() => {
     const storedUser = localStorage.getItem("currentrUsers");
@@ -39,6 +40,7 @@ export const UserProvider = ({ children }) => {
     localStorage.setItem("users", JSON.stringify(updatedUsers));
     localStorage.setItem("currentrUsers", JSON.stringify(newUser));
     toast.success("Register successful. try login");
+    navigate("/admin/dashboard");
     return true;
   };
 
