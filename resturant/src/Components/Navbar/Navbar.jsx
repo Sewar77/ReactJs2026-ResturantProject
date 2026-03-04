@@ -1,6 +1,7 @@
 import React from "react";
 import "./Navbar.css";
 import { useNavigate } from "react-router-dom";
+import Theme from "../../Theme/Theme.jsx";
 function Navbar() {
   const navigate = useNavigate();
   return (
@@ -21,6 +22,9 @@ function Navbar() {
         </li>
         <li>
           <a href="#">Menu</a>
+        </li>
+        <li>
+          <Theme />
         </li>
         <li>
           <button onClick={() => navigate("/register")}>Sigin In</button>
