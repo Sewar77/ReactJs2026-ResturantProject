@@ -53,10 +53,10 @@ function MenuList() {
         <Typography variant="h4" align="center" fontWeight="bold">
           Our Menu
         </Typography>
-        <Grid container spacing={12}>
+        <Grid container spacing={1}>
           {pizzaMenu.map((pizza) => {
             return (
-              <Grid item xs={12} sm={6} md={5} key={pizza.id}>
+              <Grid item key={pizza.id}>
                 <MenuCard
                   id={pizza.id}
                   name={pizza.name}

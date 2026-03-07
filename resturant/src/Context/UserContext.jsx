@@ -38,30 +38,41 @@ export const UserProvider = ({ children }) => {
     // users.push(newUser); copy better than push because push mutate the original array and copy create new array with new user
     const updatedUsers = [...users, newUser];
     localStorage.setItem("users", JSON.stringify(updatedUsers));
-    localStorage.setItem("currentrUsers", JSON.stringify(newUser));
     toast.success("Register successful. try login");
-    navigate("/admin/dashboard");
+    navigate("/login");
     return true;
   };
 
   const login = (email, password) => {
     const users = JSON.parse(localStorage.getItem("users")) || [];
+    console.log("users", users);
     const existUser = users.find(
       (user) => user.email === email && user.password === password
     );
+    console.log("current user", existUser?.role);
     if (!existUser) {
       toast.error("Incorrect email or password");
       return;
     }
     localStorage.setItem("currentrUsers", JSON.stringify(existUser));
     toast.success("Login successfllu");
+    if (existUser?.role === "user") {
+      navigate("/user/dashboard");
+    } else {
+      navigate("/admin/dashboard");
+    } //role based access
     return;
+  };
+
+  const logout = () => {
+    localStorage.removeItem("currentrUsers");
   };
   return (
     <UserContext.Provider
       value={{
         register,
         login,
+        logout,
         user,
       }}
     >
