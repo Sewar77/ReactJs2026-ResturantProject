@@ -19,7 +19,7 @@ function MenuCard({ id, name, descriptioon, image, price, quantity }) {
   console.log(item);
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
-  
+
   const { cart, addToCart } = useContext(CartContext);
 
   const handleView = () => {

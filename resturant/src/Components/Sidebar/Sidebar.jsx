@@ -14,9 +14,20 @@ function Sidebar({ open, toggleSideBar }) {
   const role = user?.role;
   return (
     <>
-      <Box>
+      <Box
+        sx={{
+          p: 3,
+          m: 3,
+          bgcolor: "#4121EF",
+          color: "white",
+          minHeight: "100vh",
+        }}
+      >
         {/* role based access=rba */}
-        <IconButton onClick={toggleSideBar} sx={{ color: "grey" }}>
+        <IconButton
+          onClick={toggleSideBar}
+          sx={{ color: "grey", bgcolor: "white" }}
+        >
           <MenuIcon />
         </IconButton>
         {open && <Typography sx={{ p: 2 }}>Hello, {user?.name} </Typography>}
@@ -24,7 +35,7 @@ function Sidebar({ open, toggleSideBar }) {
           <ListItem button>
             <ListItemText primary={open ? "Dashboard" : "D"} />
           </ListItem>
-          {role === "user" && (
+          {role === "admin" && (
             <>
               {/* conditional render components  */}
               <ListItem button>
@@ -41,22 +52,22 @@ function Sidebar({ open, toggleSideBar }) {
               </ListItem>
             </>
           )}
-          {role === "admin" && (
+          {role === "user" && (
             <>
               <ListItem button>
-                <ListItemText primary=" Menu" />
+                <ListItemText primary={open ? "Menu" : "M"} />
               </ListItem>
               <ListItem button>
-                <ListItemText primary="profile" />
+                <ListItemText primary={open ? "Profile" : "P"} />
               </ListItem>
               <ListItem button>
-                <ListItemText primary="ordered" />
+                <ListItemText primary={open ? "Cart" : "C"} />
               </ListItem>
               <ListItem button>
-                <ListItemText primary="cart" />
+                <ListItemText primary={open ? "Messaged" : "MS"} />
               </ListItem>
               <ListItem button>
-                <ListItemText primary="logout" />
+                <ListItemText primary={open ? "Logout" : "L"} />
               </ListItem>
             </>
           )}

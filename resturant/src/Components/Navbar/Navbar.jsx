@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./Navbar.css";
 import { useNavigate } from "react-router-dom";
 import Theme from "../../Theme/Theme.jsx";
+import { UserContext } from "../../Context/UserContext.jsx";
 function Navbar() {
+  const { logout } = useContext(UserContext);
   const navigate = useNavigate();
+  const handleLogout = () => {
+    logout();
+    navigate("/");
+  };
   return (
     <nav className="nav">
       <div className="logo">
@@ -28,6 +34,12 @@ function Navbar() {
         </li>
         <li>
           <button onClick={() => navigate("/register")}>Sigin In</button>
+        </li>
+        <li>
+          <button onClick={() => navigate("/login")}>Sigin Up</button>
+        </li>
+        <li>
+          <button onClick={handleLogout}>Logout</button>
         </li>
       </ul>
     </nav>
