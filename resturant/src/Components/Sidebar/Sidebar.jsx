@@ -10,15 +10,14 @@ import {
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 function Sidebar({ open, toggleSideBar }) {
-  const { user } = useContext(UserContext);
+  const user = localStorage.getItem("currentrUsers");
   const role = user?.role;
   return (
     <>
       <Box
         sx={{
           p: 3,
-          m: 3,
-          bgcolor: "#4121EF",
+          bgcolor: "MediumPurple",
           color: "white",
           minHeight: "100vh",
         }}
