@@ -87,6 +87,12 @@ function MenuManage() {
     setOpen(!open);
     setNewItem({});
   };
+
+  const handleDelete = (id) => {
+    const newMenu = pizzaMenu.filter((piiza) => piiza.id !== id);
+    setPizzaMenu(newMenu);
+    toast.success("Deleted Successfully");
+  };
   return (
     <>
       <Container>
@@ -148,7 +154,12 @@ function MenuManage() {
                         <Button variant="contained" size="small">
                           Edit
                         </Button>
-                        <Button variant="contained" size="small" color="error">
+                        <Button
+                          variant="contained"
+                          size="small"
+                          color="error"
+                          onClick={() => handleDelete(pizza.id)}
+                        >
                           Delete
                         </Button>
                       </Stack>
