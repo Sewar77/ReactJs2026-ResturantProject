@@ -1,6 +1,7 @@
 import {
   Avatar,
   Button,
+  ButtonBase,
   Container,
   Paper,
   Stack,
@@ -10,11 +11,14 @@ import {
   TableContainer,
   TableHead,
   TableRow,
+  TextField,
   Typography,
 } from "@mui/material";
+import { useState } from "react";
+import toast from "react-hot-toast";
 
 function MenuManage() {
-  const pizzaMenu = [
+  const [pizzaMenu, setPizzaMenu] = useState([
     {
       id: 1, //unique value
       name: "Margherita",
@@ -57,7 +61,32 @@ function MenuManage() {
       price: 10.99,
       quantity: 10,
     },
-  ];
+  ]);
+
+  const [newItem, setNewItem] = useState({});
+  console.log(newItem);
+  const [open, setOpen] = useState(false);
+  // !true
+  // !false
+  const handleAddItem = () => {
+    setOpen(!open);
+  };
+
+  const handleSave = () => {
+    if (
+      !newItem.name ||
+      !newItem.description ||
+      !newItem.price ||
+      !newItem.quantity
+    ) {
+      toast.error("Please fill all fields");
+      return;
+    }
+    pizzaMenu.push({ id: pizzaMenu.length + 1, ...newItem });
+    toast.success("Added Succeefllt");
+    setOpen(!open);
+    setNewItem({});
+  };
   return (
     <>
       <Container>
@@ -72,6 +101,15 @@ function MenuManage() {
         >
           Manage Menu
         </Typography>
+        <Button
+          textAlign="center"
+          variant="contained"
+          size="small"
+          color="warning"
+          onClick={handleAddItem}
+        >
+          {open ? "Cancel" : "Add New"}
+        </Button>
         <TableContainer component={Paper}>
           <Table>
             <TableHead>
@@ -118,6 +156,69 @@ function MenuManage() {
                   </TableRow>
                 );
               })}
+              {open && (
+                <TableRow>
+                  <TableCell>{pizzaMenu.length + 1}</TableCell>
+                  <TableCell>
+                    <TextField
+                      label="Image"
+                      value={newItem.image}
+                      onChange={(e) =>
+                        setNewItem({ ...newItem, image: e.target.value })
+                      }
+                    />
+                  </TableCell>
+                  <TableCell>
+                    <TextField
+                      label="Name"
+                      value={newItem.name}
+                      onChange={(e) =>
+                        setNewItem({ ...newItem, name: e.target.value })
+                      }
+                    />
+                  </TableCell>
+                  <TableCell>
+                    <TextField
+                      label="Description"
+                      value={newItem.description}
+                      onChange={(e) =>
+                        setNewItem({ ...newItem, description: e.target.value })
+                      }
+                    />
+                  </TableCell>
+                  <TableCell>
+                    <TextField
+                      label="Price"
+                      type="number"
+                      value={newItem.price}
+                      onChange={(e) =>
+                        setNewItem({ ...newItem, price: e.target.value })
+                      }
+                    />
+                  </TableCell>
+                  <TableCell>
+                    <TextField
+                      label="Quantity"
+                      type="number"
+                      value={newItem.quantity}
+                      onChange={(e) =>
+                        setNewItem({ ...newItem, quantity: e.target.value })
+                      }
+                    />
+                  </TableCell>
+                  <TableCell align="center">
+                    <Stack direction="row" spacing={1} justifyContent="center">
+                      <Button
+                        variant="contained"
+                        size="small"
+                        onClick={handleSave}
+                      >
+                        Save
+                      </Button>
+                    </Stack>
+                  </TableCell>
+                </TableRow>
+              )}
             </TableBody>
           </Table>
         </TableContainer>
