@@ -66,7 +66,11 @@ function Navbar() {
 
             <Button>Gallery</Button>
 
-            <Button>Contact</Button>
+            {role === "user" ? (
+              <Button onClick={() => navigate("/messages")}>Contact</Button>
+            ) : (
+              <Button>Manage User</Button>
+            )}
 
             {role === "admin" ? (
               <Button
