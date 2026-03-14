@@ -8,6 +8,7 @@ import Login from "./Components/Auth/Login.jsx";
 import AdminDashboard from "./pages/Admin/AdminDashboard.jsx";
 import Dashboard from "./Components/User/Dashboard/Dashboard.jsx";
 import MenuManage from "./Components/Admin/Manage/MenuManage.jsx";
+import ContactUs from "./Components/User/Contact/ContactUs.jsx"
 function App() {
   return (
     <>
@@ -21,6 +22,7 @@ function App() {
         <Route path="/admin/manage-menu" element={<MenuManage />} />
         <Route path="/user/dashboard" element={<Dashboard />} />
         <Route path="/view-details" element={<ViewItem />} />
+        <Route path="/messages" element={<ContactUs />} />
       </Routes>
     </>
   );
