@@ -1,5 +1,3 @@
-import { useContext } from "react";
-import { UserContext } from "../../Context/UserContext";
 import {
   Box,
   List,
@@ -7,65 +5,77 @@ import {
   Typography,
   ListItemText,
   IconButton,
+  Divider,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 function Sidebar({ open, toggleSideBar }) {
-  const user = localStorage.getItem("currentrUsers");
+  const user = JSON.parse(localStorage.getItem("currentrUsers")) || null;
   const role = user?.role;
   return (
     <>
       <Box
         sx={{
-          p: 3,
+          display: "flex",
+          flexDirection: "column",
+          flexWrap: "wrap",
           bgcolor: "MediumPurple",
           color: "white",
+          width: open ? "200px" : "60px",
           minHeight: "100vh",
+          p: 2,
+          textAlign: "center",
+          transition: "width 0.3s ease",
         }}
       >
         {/* role based access=rba */}
         <IconButton
           onClick={toggleSideBar}
-          sx={{ color: "grey", bgcolor: "white" }}
+          sx={{ color: "MediumPurple", bgcolor: "white", mb: 3 }}
         >
           <MenuIcon />
         </IconButton>
-        {open && <Typography sx={{ p: 2 }}>Hello, {user?.name} </Typography>}
+        {open ? (
+          <Typography sx={{ p: 2 }}>Hello, {user?.name} </Typography>
+        ) : (
+          "Hello"
+        )}
+        <Divider sx={{ bgcolor: "white", mb: 2 }} />
         <List>
-          <ListItem button>
+          <ListItem button component="div" sx={{ mb: 1 }}>
             <ListItemText primary={open ? "Dashboard" : "D"} />
           </ListItem>
           {role === "admin" && (
             <>
               {/* conditional render components  */}
-              <ListItem button>
+              <ListItem button component="div" sx={{ mb: 1 }}>
                 <ListItemText primary={open ? "menu" : "M"} />
               </ListItem>
-              <ListItem button>
+              <ListItem button component="div" sx={{ mb: 1 }}>
                 <ListItemText primary={open ? "users" : "U"} />
               </ListItem>
-              <ListItem button>
+              <ListItem button component="div" sx={{ mb: 1 }}>
                 <ListItemText primary={open ? "employee" : "E"} />
               </ListItem>
-              <ListItem button>
+              <ListItem button component="div" sx={{ mb: 1 }}>
                 <ListItemText primary={open ? "logout" : "L"} />
               </ListItem>
             </>
           )}
           {role === "user" && (
             <>
-              <ListItem button>
+              <ListItem button component="div" sx={{ mb: 1 }}>
                 <ListItemText primary={open ? "Menu" : "M"} />
               </ListItem>
-              <ListItem button>
+              <ListItem button component="div" sx={{ mb: 1 }}>
                 <ListItemText primary={open ? "Profile" : "P"} />
               </ListItem>
-              <ListItem button>
+              <ListItem button component="div" sx={{ mb: 1 }}>
                 <ListItemText primary={open ? "Cart" : "C"} />
               </ListItem>
-              <ListItem button>
+              <ListItem button component="div" sx={{ mb: 1 }}>
                 <ListItemText primary={open ? "Messaged" : "MS"} />
               </ListItem>
-              <ListItem button>
+              <ListItem button component="div" sx={{ mb: 1 }}>
                 <ListItemText primary={open ? "Logout" : "L"} />
               </ListItem>
             </>

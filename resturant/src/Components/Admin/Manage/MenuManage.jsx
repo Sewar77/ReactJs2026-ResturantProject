@@ -16,6 +16,7 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import Navbar from "../../Navbar/Navbar";
 
 function MenuManage() {
   const [pizzaMenu, setPizzaMenu] = useState([
@@ -95,6 +96,7 @@ function MenuManage() {
   };
   return (
     <>
+      <Navbar />
       <Container>
         <Typography
           variant="h3"

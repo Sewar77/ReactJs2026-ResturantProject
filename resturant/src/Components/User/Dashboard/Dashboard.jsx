@@ -1,7 +1,6 @@
 import { Container, Box } from "@mui/material";
 import Sidebar from "../../Sidebar/Sidebar.jsx";
 import { useState } from "react";
-import About from "../../About/About.jsx";
 import Menu from "../Menu/Menu.jsx";
 import Navbar from "../../Navbar/Navbar.jsx";
 function Dashboard() {

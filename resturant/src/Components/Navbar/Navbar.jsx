@@ -16,7 +16,7 @@ function Navbar() {
   const { logout, user } = useContext(UserContext);
   console.log(user);
   const role = user?.role;
-  const currentrUsers = localStorage.getItem("currentrUsers");
+  const currentrUsers = JSON.parse(localStorage.getItem("currentrUsers"));
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -30,7 +30,6 @@ function Navbar() {
       sx={{
         bgcolor: "white",
         color: "black",
-        width: "100%",
       }}
     >
       <Container maxWidth="xl">
@@ -38,8 +37,8 @@ function Navbar() {
           sx={{
             display: "flex",
             justifyContent: "space-between",
-            gap: 5,
             width: "100%",
+            flexWrap: "wrap",
           }}
         >
           <Typography
@@ -57,19 +56,36 @@ function Navbar() {
           <Box
             sx={{
               display: "flex",
+              flexWrap: "wrap",
               gap: 2,
               alignItems: "center",
               color: "#000",
             }}
           >
-            <Button onClick={() => navigate("/")}>Home</Button>
+            <Button
+              variant="contained"
+              color="secondary"
+              onClick={() => navigate("/")}
+            >
+              Home
+            </Button>
 
-            <Button>Gallery</Button>
+            <Button variant="contained" color="secondary">
+              Gallery
+            </Button>
 
             {role === "user" ? (
-              <Button onClick={() => navigate("/messages")}>Contact</Button>
+              <Button
+                variant="contained"
+                color="secondary"
+                onClick={() => navigate("/messages")}
+              >
+                Contact
+              </Button>
             ) : (
-              <Button>Manage User</Button>
+              <Button variant="contained" color="secondary">
+                Manage User
+              </Button>
             )}
 
             {role === "admin" ? (
@@ -81,12 +97,15 @@ function Navbar() {
                 Manage Menu
               </Button>
             ) : (
-              <Button>Menu</Button>
+              <Button variant="contained" color="secondary">
+                Menu
+              </Button>
             )}
 
             {currentrUsers ? (
               <Button
-                variant="outlined"
+                variant="contained"
+                color="secondary"
                 sx={{
                   borderColor: "white",
                 }}
@@ -96,7 +115,13 @@ function Navbar() {
               </Button>
             ) : (
               <>
-                <Button onClick={() => navigate("/register")}>Register</Button>
+                <Button
+                  variant="contained"
+                  color="secondary"
+                  onClick={() => navigate("/register")}
+                >
+                  Register
+                </Button>
                 <Button
                   variant="contained"
                   color="secondary"
