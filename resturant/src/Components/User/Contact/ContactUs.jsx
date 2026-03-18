@@ -11,29 +11,29 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 
 function ContactUs() {
-  const [messages, setMessages] = useState([]);
-  const [messageData, setMessageData] = useState([]);
+  const [messages, setMessages] = useState([]); //all messages
+  const [messageData, setMessageData] = useState([]); //the current message
 
   const handleSubmitMessage = () => {
     if (!messageData.name || !messageData.email || !messageData.message) {
       toast.error("Please fill all fields!");
       return;
     }
-    setMessageData({
+    const newMessage = {
       id: messages.length + 1,
+      ...messageData,
+      state: "pending",
+    };
+    const updated = [...messages, newMessage];
+    setMessages(updated);
+
+    localStorage.setItem("messages", JSON.stringify(updated));
+    setMessageData({
+      //reset form
       name: "",
       email: "",
       message: "",
     });
-    setMessages([...messages, messageData]);
-    const pastMessages = localStorage.getItem("messages");
-    if (!pastMessages) {
-      localStorage.setItem("messages", JSON.stringify(messages));
-    }
-    localStorage.setItem(
-      "messages",
-      JSON.stringify([...messages, messageData])
-    );
     toast.success("Your message is reviewd by manager, it takes time. enjoy!");
   };
   return (
