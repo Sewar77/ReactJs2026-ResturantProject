@@ -7,10 +7,12 @@ import {
   IconButton,
   Divider,
 } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
 function Sidebar({ open, toggleSideBar }) {
   const user = JSON.parse(localStorage.getItem("currentrUsers")) || null;
   const role = user?.role;
+  const navigate = useNavigate();
   return (
     <>
       <Box
@@ -49,6 +51,14 @@ function Sidebar({ open, toggleSideBar }) {
               {/* conditional render components  */}
               <ListItem button component="div" sx={{ mb: 1 }}>
                 <ListItemText primary={open ? "menu" : "M"} />
+              </ListItem>
+              <ListItem button component="div" sx={{ mb: 1 }}>
+                <ListItemText
+                  button
+                  sx={{ cursor: "pointer" }}
+                  onClick={() => navigate("/manage/messages")}
+                  primary={open ? "Meesages" : "MS"}
+                />
               </ListItem>
               <ListItem button component="div" sx={{ mb: 1 }}>
                 <ListItemText primary={open ? "users" : "U"} />
