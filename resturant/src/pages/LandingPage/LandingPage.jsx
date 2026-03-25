@@ -4,11 +4,13 @@ import Navbar from "../../Components/Navbar/Navbar.jsx";
 import Hero from "../../Components/Hero/Hero.jsx";
 import About from "../../Components/About/About.jsx";
 import MenuList from "../../Components/Menu/MenuList.jsx";
+import Products from "../../Components/Products/Products.jsx";
 function LandingPage() {
   return (
     <>
       <Navbar />
       <Hero />
+      <Products />
       <About />
       <MenuList />
     </>
